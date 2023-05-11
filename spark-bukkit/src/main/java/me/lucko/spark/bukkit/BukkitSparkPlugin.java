@@ -31,6 +31,7 @@ import me.lucko.spark.common.platform.serverconfig.ServerConfigProvider;
 import me.lucko.spark.common.platform.world.WorldInfoProvider;
 import me.lucko.spark.common.sampler.ThreadDumper;
 import me.lucko.spark.common.sampler.source.ClassSourceLookup;
+import me.lucko.spark.common.sampler.source.ClassSourceLookupGrouper;
 import me.lucko.spark.common.sampler.source.SourceMetadata;
 import me.lucko.spark.common.tick.TickHook;
 import me.lucko.spark.common.tick.TickReporter;
@@ -181,7 +182,7 @@ public class BukkitSparkPlugin extends JavaPlugin implements SparkPlugin {
 
     @Override
     public ClassSourceLookup createClassSourceLookup() {
-        return new BukkitClassSourceLookup();
+        return new ClassSourceLookupGrouper(Arrays.asList(BukkitClassSourceLookup.class, PaperClassSourceLookup.class));
     }
 
     @Override
